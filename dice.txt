@@ -1,0 +1,24 @@
+# Maxwell–Boltzmann Dice Roll System (d9 and d12)
+# Shared tune-number → pseudo-random roll mechanism
+
+# Choose a modulus (same for both dice)
+M = 100
+
+# Given a tune number n:
+# Convert n into a pseudo-random value x in (0,1]
+
+x = ((n % M) + 1) / M
+
+
+# --- d9 Roll ---
+# Use the cumulative MB table for d9: P_k^(9)
+# Find the smallest k such that:
+#     P_k^(9) >= x
+# Output k as the d9 roll.
+
+
+# --- d12 Roll ---
+# Use the cumulative MB table for d12: P_k^(12)
+# Find the smallest k such that:
+#     P_k^(12) >= x
+# Output k as the d12 roll.
