@@ -1,0 +1,61 @@
+# ============================================
+# Maxwell-Dice: Automatic Increment Roll System
+# ============================================
+# Uses a Maxwell–Boltzmann-inspired distribution
+# to generate pseudo-random rolls for d9 and d12.
+#
+# You do NOT need to provide a tune number.
+# The system starts at turn 1 and increments upward
+# every time you call:
+#   "Maxwell Roll d12"
+#   "Maxwell Roll d9"
+#
+# --------------------------------------------
+# INTERNAL STATE
+# --------------------------------------------
+# n = 1 at the first roll
+# n increases by +1 every time a Maxwell Roll is requested
+
+# --------------------------------------------
+# SHARED MODULUS
+# --------------------------------------------
+M = 100
+
+# --------------------------------------------
+# TUNE NUMBER → RANDOM VALUE
+# --------------------------------------------
+# Convert internal counter n into x ∈ (0,1]
+x = ((n % M) + 1) / M
+
+
+# ============================================
+# MAXWELL ROLL d9
+# ============================================
+# Cumulative MB table for d9:
+P9 = [0.040, 0.183, 0.423, 0.663, 0.835,
+      0.931, 0.975, 0.992, 1.000]
+
+# Find smallest k such that:
+#     P9[k] >= x
+# Output k as the d9 roll.
+
+
+# ============================================
+# MAXWELL ROLL d12
+# ============================================
+# Cumulative MB table for d12:
+P12 = [0.020, 0.070, 0.160, 0.290, 0.450,
+       0.620, 0.780, 0.890, 0.950,
+       0.980, 0.995, 1.000]
+
+# Find smallest k such that:
+#     P12[k] >= x
+# Output k as the d12 roll.
+
+
+# ============================================
+# AUTO-INCREMENT
+# ============================================
+# After producing a roll:
+#     n = n + 1
+# So each Maxwell Roll call produces a new pseudo-random x.
