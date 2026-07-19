@@ -1,0 +1,37 @@
+# ============================================
+# Maxwell-Dice: Paper Form (Persistent Version)
+# ============================================
+
+# 1. Maxwell–Boltzmann Distribution (Discrete Form)
+# ------------------------------------------------
+# f(i) = sqrt(2/pi) * (i^2 / a^3) * exp(-i^2 / (2a^2))
+# w_i = f(i)
+# p_i = w_i / sum(w_j)
+# P_k = sum(p_i for i = 1..k)
+
+# 2. Persistent Counter
+# ---------------------
+# The internal counter n is stored in a file:
+#     maxwell_counter.txt
+#
+# On each roll:
+#     - Read n from the file
+#     - Compute x = ((n % M) + 1) / M
+#     - Increment n
+#     - Save n back to the file
+
+# 3. Roll Procedure
+# -----------------
+# Find smallest k such that P_k >= x
+# Output k
+
+# 4. Precomputed Cumulative Tables
+# --------------------------------
+# d9:
+# P9 = [0.040, 0.183, 0.423, 0.663, 0.835,
+#       0.931, 0.975, 0.992, 1.000]
+#
+# d12:
+# P12 = [0.020, 0.070, 0.160, 0.290, 0.450,
+#        0.620, 0.780, 0.890, 0.950,
+#        0.980, 0.995, 1.000]
