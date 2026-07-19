@@ -1,0 +1,56 @@
+# ============================================
+# Maxwell-Dice: Paper Form (Notebook Version)
+# ============================================
+
+# 1. Maxwell–Boltzmann Distribution (Discrete Form)
+# ------------------------------------------------
+# For a die with faces i = 1 ... N, define:
+#
+#     f(i) = sqrt(2/pi) * (i^2 / a^3) * exp(-i^2 / (2a^2))
+#
+# where:
+#     a = scale parameter ("temperature")
+#
+# Compute weights:
+#     w_i = f(i)
+#
+# Normalize to probabilities:
+#     p_i = w_i / sum(w_j for j = 1..N)
+#
+# Build cumulative table:
+#     P_k = sum(p_i for i = 1..k)
+
+
+# 2. Maxwell-Dice Roll Mechanism
+# ------------------------------
+# Internal counter n starts at 1.
+# Each roll increments n by +1.
+#
+# Convert n into pseudo-random value x:
+#
+#     x = ((n % M) + 1) / M
+#
+# where M = 100.
+
+
+# 3. Roll Procedure
+# -----------------
+# For a die with cumulative table P_k:
+#
+#     Find smallest k such that P_k >= x
+#
+# Output k as the Maxwell roll.
+
+
+# 4. Precomputed Cumulative Tables
+# --------------------------------
+# d9 cumulative MB table:
+#     P9 = [0.040, 0.183, 0.423, 0.663, 0.835,
+#           0.931, 0.975, 0.992, 1.000]
+#
+# d12 cumulative MB table:
+#     P12 = [0.020, 0.070, 0.160, 0.290, 0.450,
+#            0.620, 0.780, 0.890, 0.950,
+#            0.980, 0.995, 1.000]
+#
+# These tables define the Maxwell-Dice system.
